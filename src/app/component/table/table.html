@@ -1,0 +1,101 @@
+<div class="container my-5">
+    <div class="card shadow">
+
+        <!-- HEADER -->
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
+            <h5 class="mb-0">Student Details</h5>
+            <div>
+                Total Students :
+                <strong>{{ myStudentList.length }}</strong>
+            </div>
+
+            <select class="form-select" aria-label="Default select example" [style]="{'width':'200px'}"
+                (change)="onChangeOption($event)">
+                <option selected>select menu.....</option>
+                <option value="edit">Edit</option>
+                <option value="delete">Delete</option>
+            </select>
+
+        </div>
+
+        <!-- BODY -->
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover text-center align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Course</th>
+                            <th>City</th>
+                            <th>Marks</th>
+                            @if (isVisiableActionColumn === 'edit') {
+                            <th>Edit</th>
+                            }
+                            @if (isVisiableActionColumn === 'delete') {
+                            <th>Delete</th>
+                            }
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @for (student of myStudentList; track $index) {
+                        <tr>
+
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.age }}</td>
+                            <td>{{ student.course }}</td>
+                            <td>{{ student.city }}</td>
+
+                            <td>
+                                <span class="badge" [ngClass]="{
+                    'bg-success': student.marks >= 80,
+                    'bg-warning': student.marks >= 60 && student.marks < 80,
+                    'bg-danger': student.marks < 60
+                  }">
+                                    {{ student.marks }}
+                                </span>
+                            </td>
+
+                            <!-- ACTION BUTTONS -->
+                            @if (isVisiableActionColumn === 'edit') {
+                            <td>
+                                <button class="btn btn-sm btn-warning me-2" (click)="onEdit(student, $index)">
+                                    Edit
+                                </button>
+                            </td>
+                            }
+
+
+                            @if (isVisiableActionColumn === 'delete') {
+                            <td>
+                                <button class="btn btn-sm btn-danger" (click)="onDelete($index)">
+                                    Delete
+                                </button>
+                            </td>
+                            }
+
+                        </tr>
+                        }
+
+
+                        <!-- No Data -->
+                        @if (myStudentList.length === 0) {
+                        <tr>
+                            <td colspan="7" class="text-muted">
+                                No Student Data Available
+                            </td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
