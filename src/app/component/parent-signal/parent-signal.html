@@ -1,0 +1,23 @@
+<p>parent-signal works!</p>
+
+<div class="card m-3">
+    <p class="mb-4">{{myParagraph()}}</p>
+    @if (myStudents()) { 
+        <ul class="list-group">
+        <li class="list-group-item">{{myStudents().fullname}}</li>
+        <li class="list-group-item">{{myStudents().age}}</li>
+        <li class="list-group-item">{{myStudents().contact}}</li>
+        <li class="list-group-item">{{myStudents().email}}</li>
+        </ul>
+        }
+</div>
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <app-child-signal [myParentInParentComponent]="myParagraph()" (myStudentsObj)="gettingChildToParentStudentData($event)"></app-child-signal>
+            </div>
+        </div>
+    </div>
+</div>
