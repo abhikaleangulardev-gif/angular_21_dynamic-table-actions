@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Table } from "./component/table/table";
+import { Parent } from "./component/parent/parent";
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, Table],
+  imports: [CommonModule, Parent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
