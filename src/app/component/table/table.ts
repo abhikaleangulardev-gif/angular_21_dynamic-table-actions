@@ -43,7 +43,7 @@ export class Table implements OnInit, OnDestroy {
       const searchTerm = this.mySearchStudentListDetails.trim().toLowerCase();
       this.myStudentList = this.allStudents.filter((std: Students) =>
         std.name.toLowerCase().includes(searchTerm) ||
-        std.city.toLowerCase().includes(searchTerm) // Also search by city as per placeholder
+        std.course.toLowerCase().includes(searchTerm) // Also search by city as per placeholder
       );
     }
   }
